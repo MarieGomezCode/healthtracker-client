@@ -1,0 +1,10 @@
+<h2>Crear Hábito</h2>
+<form (ngSubmit)="crearHabito()">
+  <label for="nombre">Nombre del Hábito</label>
+  <input id="nombre" [(ngModel)]="habito.nombre" name="nombre" required>
+
+  <label for="descripcion">Descripción</label>
+  <input id="descripcion" [(ngModel)]="habito.descripcion" name="descripcion" required>
+
+  <button type="submit">Crear Hábito</button>
+</form>

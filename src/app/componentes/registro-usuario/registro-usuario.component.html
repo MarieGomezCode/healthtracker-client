@@ -1,0 +1,13 @@
+<h2>Registro de Usuario</h2>
+<form (ngSubmit)="registrar()">
+  <label for="nombre">Nombre</label>
+  <input id="nombre" [(ngModel)]="usuario.nombre" name="nombre" required>
+
+  <label for="correoElectronico">Correo Electrónico</label>
+  <input id="correoElectronico" [(ngModel)]="usuario.correoElectronico" name="correoElectronico" required>
+
+  <label for="contrasena">Contraseña</label>
+  <input id="contrasena" [(ngModel)]="usuario.contrasena" name="contrasena" type="password" required>
+
+  <button type="submit">Registrar</button>
+</form>
