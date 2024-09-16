@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule para el uso
 import { UsuarioLogin } from '../../modelos/usuario';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { NgIf } from '@angular/common'; // Necesario para condiciones en la plantilla
+import { Router } from '@angular/router'; // Importa el router para la redirección
 
 @Component({
   selector: 'app-login-usuario',
@@ -10,15 +11,29 @@ import { NgIf } from '@angular/common'; // Necesario para condiciones en la plan
   standalone: true, // Define este componente como standalone
   imports: [FormsModule, NgIf] // Añade los módulos necesarios
 })
+
 export class LoginUsuarioComponent {
   usuario: UsuarioLogin = { correoElectronico: '', contrasena: '' };
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService: UsuarioService, private router: Router) {}
 
   login(): void {
     this.usuarioService.iniciarSesion(this.usuario).subscribe(
-      respuesta => alert('Login exitoso'),
-      error => alert('Error en las credenciales')
+      respuesta => {
+        console.log(respuesta);
+        alert('Login exitoso');
+        this.router.navigate(['/crear-habito']); // Redirige a la página de creación de hábito
+      },
+      error => {
+        if (error.status === 404) {
+          alert('Usuario no existe');
+        } else if (error.status === 401) {
+          alert('Credenciales inválidas');
+        } else {
+          alert('Error en el sistema');
+        }
+        console.error(error);
+      }
     );
   }
 }

@@ -17,8 +17,15 @@ export class RegistroUsuarioComponent {
 
   registrar(): void {
     this.usuarioService.registrarUsuario(this.usuario).subscribe(
-      respuesta => alert('Usuario registrado exitosamente'),
-      error => alert('Error al registrar usuario')
+      respuesta => {
+        console.log(respuesta);
+        alert('Usuario registrado exitosamente');
+      },
+      error => {
+        console.error(error);
+        alert('Error al registrar usuario');
+      }
     );
   }
+
 }
