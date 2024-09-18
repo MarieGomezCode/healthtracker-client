@@ -19,7 +19,7 @@ export class RegistroUsuarioComponent {
     this.usuarioService.registrarUsuario(this.usuario).subscribe(
       respuesta => {
         console.log(respuesta);
-        alert('Usuario registrado exitosamente');
+        alert(`Mensaje: ${respuesta.mensaje}, ID: ${respuesta.id}`);
       },
       error => {
         console.error(error);
