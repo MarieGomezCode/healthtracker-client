@@ -8,7 +8,10 @@ import { Router } from '@angular/router'; // Importa el router para la redirecci
 @Component({
   selector: 'app-login-usuario',
   templateUrl: './login-usuario.component.html',
+  styleUrls: ['./login-usuario.component.css'],
+
   standalone: true, // Define este componente como standalone
+
   imports: [FormsModule, NgIf] // Añade los módulos necesarios
 })
 
