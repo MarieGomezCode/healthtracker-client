@@ -7,6 +7,9 @@
     <label for="contrasena">Contraseña</label>
     <input id="contrasena" type="password" [(ngModel)]="usuario.contrasena" name="contrasena" required>
 
+    <!-- Mostrar el mensaje de error si existe -->
+    <div *ngIf="errorMensaje" class="error" style="color: red;">{{ errorMensaje }}</div>
+
     <div class="recuerdame">
       <label>
         <input type="checkbox"> Recordar contraseña
