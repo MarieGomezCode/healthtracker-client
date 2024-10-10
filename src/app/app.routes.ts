@@ -3,9 +3,11 @@ import { RegistroUsuarioComponent } from './componentes/registro-usuario/registr
 import { LoginUsuarioComponent } from './componentes/login-usuario/login-usuario.component';
 import { CrearHabitoComponent } from './componentes/crear-habito/crear-habito.component';
 
+import { AuthGuard } from './auth.guard';
+
 export const routes: Routes = [
-  { path: 'registro', component: RegistroUsuarioComponent }, // RegistroUsuarioComponent es standalone
-  { path: 'login', component: LoginUsuarioComponent }, // LoginUsuarioComponent es standalone
-  { path: 'crear-habito', component: CrearHabitoComponent }, // CrearHabitoComponent es standalone
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: 'registro', component: RegistroUsuarioComponent },
+  { path: 'login', component: LoginUsuarioComponent },
+  { path: 'crear-habito', component: CrearHabitoComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Habito } from '../modelos/habito';
 
@@ -11,11 +11,17 @@ export class HabitoService {
 
   constructor(private http: HttpClient) {}
 
-  crearHabito(habito: Habito): Observable<Habito> {
-    return this.http.post<Habito>(`${this.apiUrl}/crear`, habito);
+  crearHabito(habito: Habito, token?: string): Observable<any> {
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);  // Corregido: interpolación de strings
+    }
+    return this.http.post(`${this.apiUrl}/crear`, habito, { headers });  // Corregido: interpolación de strings
   }
 
-  obtenerHabitosPorUsuario(usuarioId: number): Observable<Habito[]> {
-    return this.http.get<Habito[]>(`${this.apiUrl}/usuario/${usuarioId}`);
+  obtenerHabitosPorUsuario(userId: number, token: string): Observable<Habito[]> {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });  // Corregido: interpolación de strings
+    return this.http.get<Habito[]>(`${this.apiUrl}/usuario/${userId}`, { headers });  // Corregido: interpolación de strings
   }
+
 }

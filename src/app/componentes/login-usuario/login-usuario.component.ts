@@ -29,8 +29,12 @@ export class LoginUsuarioComponent {
     this.usuarioService.iniciarSesion(this.usuario).subscribe(
       respuesta => {
         console.log(respuesta);
+        // Guardar el token y el ID del usuario en localStorage
+        localStorage.setItem('token', respuesta.token); // Guardar el token
+        localStorage.setItem('usuarioId', respuesta.usuarioId); // Guardar el ID del usuario
+
         alert('Login exitoso');
-        this.router.navigate(['/crear-habito']);
+        this.router.navigate(['/crear-habito']); // Redirigir a crear hábito
       },
       error => {
         this.errorMensaje = error.error.mensaje || 'Error en el sistema'; // Mostrar el mensaje de error desde el backend

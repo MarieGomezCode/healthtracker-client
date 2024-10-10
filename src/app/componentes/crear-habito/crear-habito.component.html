@@ -1,10 +1,24 @@
-<h2>Crear Hábito</h2>
-<form (ngSubmit)="crearHabito()">
-  <label for="nombre">Nombre del Hábito</label>
-  <input id="nombre" [(ngModel)]="habito.nombre" name="nombre" required>
+<div class="registro-container">
+  <h2>Bienvenida, {{ usuarioNombre }}</h2>
 
-  <label for="descripcion">Descripción</label>
-  <input id="descripcion" [(ngModel)]="habito.descripcion" name="descripcion" required>
+  <h2>Crear Hábito</h2>
+  <form (ngSubmit)="crearHabito()">
+    <label for="nombre">Nombre del Hábito</label>
+    <input id="nombre" [(ngModel)]="habito.nombre" name="nombre" type="text" required>
 
-  <button type="submit">Crear Hábito</button>
-</form>
+    <label for="descripcion">Descripción</label>
+    <input id="descripcion" [(ngModel)]="habito.descripcion" name="descripcion" type="text"  required>
+
+    <button type="submit">Crear Hábito</button>
+  </form>
+
+  <h3>Hábito creados</h3>
+  <ul class="habitos-list">
+    <li *ngFor="let habito of habitos">
+      <strong>{{ habito.nombre }}</strong> - {{ habito.descripcion }} (Creado en: {{ habito.creadoEn }})
+    </li>
+  </ul>
+
+
+  <button (click)="logout()">Cerrar Sesión</button>
+</div>
